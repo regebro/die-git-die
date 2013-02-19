@@ -138,3 +138,7 @@ Remember that git knows perfectly well which branch I'm on, and there are no cha
 the master branch, so why it persists in reverting the master branch to the state where
 I cloned it instead of doing a merge, I don't know.
 
+You seem to be able to avoid this problem with the following addition in .gitconfig:
+
+    [push]
+    	default = current
