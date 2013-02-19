@@ -34,3 +34,10 @@ and fix them, which we push and commit.
     cd ../die-git-die
     git commit -a -m"Commit"
     git push 
+
+OK, now we are ready to commit and push the changes in the pages branch:
+
+    $ git add .
+    $ git commit -a -m "First pages commit"
+    $ git push origin gh-pages
+
