@@ -136,6 +136,5 @@ So what is the reason for this? What did I do wrong? Well, I *think* that you ha
 every time you push the gh-pages branch clone. I don't know why, and it's amazingly stupid.
 Remember that git knows perfectly well which branch I'm on, and there are no changes to
 the master branch, so why it persists in reverting the master branch to the state where
-I cloned it instead of doing a marge, I don't know.
-
+I cloned it instead of doing a merge, I don't know.
 
