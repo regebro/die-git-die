@@ -19,25 +19,69 @@ should it? Because we are using a code revision system,
 so even if something gets messed up, it's always possible
 to go back to an earlier revision and do it from there.
 
-    git clone git@github.com:regebro/die-git-die.git die-git-die.pages
-    cd die-git-die.pages
-    git checkout --orphan gh-pages
-    git rm -rf .
+    $ git clone git@github.com:regebro/die-git-die.git die-git-die.pages
+    $ cd die-git-die.pages
+    $ git checkout --orphan gh-pages
+    $ git rm -rf .
 
 So we create some pages to have there. It's HTML.
 
-    echo "<html><body><h1>Die git, die\!</h1></body></html>" > index.html
+    $ echo "<html><body><h1>Die git, die\!</h1></body></html>" > index.html
+    $ git add .
+    $ git commit -a -m "First pages commit"
+    $ git push origin gh-pages
 
 While doing up these pages, we find some errors in the original branch 
 and fix them, which we push and commit.
 
-    cd ../die-git-die
-    git commit -a -m"Commit"
-    git push 
+    $ cd ../die-git-die
+    $ git commit -a -m"Commit"
+    $ git push 
 
-OK, now we are ready to commit and push the changes in the pages branch:
+And let's then clean up the HTML in the pages a bit:
 
-    $ git add .
-    $ git commit -a -m "First pages commit"
-    $ git push origin gh-pages
+    $ cd ../die-git-die
+    $ vi index.html
+    $ git commit -a -m"Commit"
+    $ git push 
+
+    ! [rejected]        master -> master (non-fast-forward)
+    error: failed to push some refs to 'git@github.com:regebro/die-git-die.git'
+    To prevent you from losing history, non-fast-forward updates were rejected
+    Merge the remote changes (e.g. 'git pull') before pushing again.  See the
+    'Note about fast-forwards' section of 'git push --help' for details.
+
+Oi! What? Why? There's no conflicts, there can't be any conflicts,
+the two branches doesn't even have one single file in common. Why didn't it 
+want to push? But, eh, OK, I'll pull.
+
+    $ git pull
+
+    You asked me to pull without telling me which branch you
+    want to merge with, and 'branch.gh-pages.merge' in
+    your configuration file does not tell me, either. Please
+    specify which branch you want to use on the command line and
+    try again (e.g. 'git pull <repository> <refspec>').
+
+What!? Doesn't it know I'm on the gh-pages branch?
+
+    $ git checkout gh-pages
+    Already on 'gh-pages'
+
+Yes, it does. So why does it ask me with which branch I want to merge!?
+That makes no sense. But OK, I'll tell it:
+
+    $ git pull gh-pages
+    fatal: 'gh-pages' does not appear to be a git repository
+    fatal: The remote end hung up unexpectedly
+
+Aha, OK. 
+
+    $ git pull git@github.com:regebro/die-git-die.git gh-pages
+    From github.com:regebro/die-git-die
+     * branch            gh-pages   -> FETCH_HEAD
+    Already up-to-date.
+
+Huh.
+
 
