@@ -107,8 +107,35 @@ No? OK, so I'll force it then. It tells me I can lose history, but this is
 a revision control system, surely they don't mean I can actually loose history?
 
     $ git push -f
-    Total 0 (delta 0), reused 0 (delta 0)
-    To git@github.com:regebro/die-git-die.git
-    + 1a16272...dde3237 master -> master (forced update)
+    Counting objects: 6, done.
+    Delta compression using up to 2 threads.
+    Compressing objects: 100% (4/4), done.
+    Writing objects: 100% (6/6), 626 bytes, done.
+    Total 6 (delta 0), reused 6 (delta 0)
 
-OK, so it didn't actually push anything. So why did I need to do this?
+OOPS! Everything you did on the master branch since you made the hg-pages branch now dissapeared!
+Gone! *Poof*!
+
+You can get it back by going over to the other clone and pushing it again, because it
+still exists locally. But that's not obvious. But don't do a pull there first!
+
+    $ cd ../die-git-die
+    $ git push
+
+And if you pull in that clone first, well, then you are in deeper trouble, 
+but you can still get it back because it's still exists
+in the local history, although I'm unsure how.
+
+If you delete that local clone though, it's gone forever.
+
+
+So what is the reason for this? What did I do wrong? Well, I *think* that you have to write
+
+    $ git push origin gh-pages
+
+every time you push the gh-pages branch clone. I don't know why, and it's amazingly stupid.
+Remember that git knows perfectly well which branch I'm on, and there are no changes to
+the master branch, so why it persists in reverting the master branch to the state where
+I cloned it instead of doing a marge, I don't know.
+
+
