@@ -82,6 +82,33 @@ Aha, OK.
      * branch            gh-pages   -> FETCH_HEAD
     Already up-to-date.
 
-Huh.
+Huh. This is extra strange, since on another repo I have, it does 
+know what to pull from automatically. The error message tells me to
+fix my config file, and I notice that the other repos config file
+does include those changes, so I'll do that here as well. No idea why
+it worked automatically once.
 
+    [branch "gh-pages"]
+    	remote = origin
+    	merge = refs/heads/gh-pages
+    	rebase = true
 
+OK, now git pull works. But it didn't merge anything, so... I'll try to push again:
+
+    $ git push 
+
+    ! [rejected]        master -> master (non-fast-forward)
+    error: failed to push some refs to 'git@github.com:regebro/die-git-die.git'
+    To prevent you from losing history, non-fast-forward updates were rejected
+    Merge the remote changes (e.g. 'git pull') before pushing again.  See the
+    'Note about fast-forwards' section of 'git push --help' for details.
+
+No? OK, so I'll force it then. It tells me I can lose history, but this is 
+a revision control system, surely they don't mean I can actually loose history?
+
+    $ git push -f
+    Total 0 (delta 0), reused 0 (delta 0)
+    To git@github.com:regebro/die-git-die.git
+    + 1a16272...dde3237 master -> master (forced update)
+
+OK, so it didn't actually push anything. So why did I need to do this?
