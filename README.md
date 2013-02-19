@@ -104,7 +104,7 @@ OK, now git pull works. But it didn't merge anything, so... I'll try to push aga
     'Note about fast-forwards' section of 'git push --help' for details.
 
 No? OK, so I'll force it then. It tells me I can lose history, but this is 
-a revision control system, surely they don't mean I can actually loose history?
+a revision control system, surely they don't mean I can actually lose history?
 
     $ git push -f
     Counting objects: 6, done.
