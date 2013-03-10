@@ -153,5 +153,6 @@ branches by default. But it doesn't. And it seem like there is no way to make it
 which also boggles the mind. Pull has an "--all" parameter, which seems to make no discernable
 difference.
 
-It is in any case completely obvious that pull and push by default should pull and push the same
-branches. All other behavior is just confusing and will cause problems.
+It is in any case completely obvious that pull and push should pull and push the same branches. 
+All other behavior is just confusing and will cause problems. Currently git does not do this by 
+default, and I'm not even sure it's possible to configure it so it does. 
