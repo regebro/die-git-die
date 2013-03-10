@@ -129,16 +129,26 @@ in the local history, although I'm unsure how.
 If you delete that local clone though, it's gone forever.
 
 
-So what is the reason for this? What did I do wrong? Well, I *think* that you have to write
+So what is the reason for this? What did I do wrong? Well, the problem seems to be that git by 
+default will push "matching" branches, ie all branches that exist both locally and remotely.
+However, git will not *pull* matching branches. That means that all your branches except your
+current branch will not get updated when you pull. And when you push, your local git will then,
+in a fit of amazing stupidity, try to push *your current state* of these other branches onto
+your origin.
 
-    $ git push origin gh-pages
+This is so mindboggingly stupidly inconsistent that it blows my minds. Still. 
+Two weeks after I learned this. 
 
-every time you push the gh-pages branch clone. I don't know why, and it's amazingly stupid.
-Remember that git knows perfectly well which branch I'm on, and there are no changes to
-the master branch, so why it persists in reverting the master branch to the state where
-I cloned it instead of doing a merge, I don't know.
-
-You seem to be able to avoid this problem with the following addition in .gitconfig:
+Git 2.0 will change the default to current, it seems, which solves the problem at least partly.
+Meanwhile you can add the following addition in your .gitconfig to set a more sane default.
 
     [push]
     	default = current
+
+I can however not find any way to set the same thing for pull, so what it pulls for default is 
+still somewhat unclear to me.
+
+Of course, a less good but at least sane behavior would have been if pull also pulled matching
+branches by default. But it doesn't. And it seem like there is no way to make it do so either,
+which also boggles the mind. Pull has an "--all" parameter, which seems to make no discernable
+difference.
