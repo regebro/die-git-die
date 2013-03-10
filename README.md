@@ -153,5 +153,5 @@ branches by default. But it doesn't. And it seem like there is no way to make it
 which also boggles the mind. Pull has an "--all" parameter, which seems to make no discernable
 difference.
 
-It is in any case completely obvious that pull and push, by default should pull and push the same
+It is in any case completely obvious that pull and push by default should pull and push the same
 branches. All other behavior is just confusing and will cause problems.
