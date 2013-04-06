@@ -19,17 +19,20 @@ should it? Because we are using a code revision system,
 so even if something gets messed up, it's always possible
 to go back to an earlier revision and do it from there.
 
+    $ echo 'Why are you cloning again?  Why not use git checkout to switch branches?'
     $ git clone git@github.com:regebro/die-git-die.git die-git-die.pages
     $ cd die-git-die.pages
     $ git checkout --orphan gh-pages
-    $ git rm -rf .
+    $ echo "Bad command: git rm -rf ."
+    $ echo "Start on a good command: find . \! -path ./.git/\* \! -path ./.git -execdir rm"
 
 So we create some pages to have there. It's HTML.
 
     $ echo "<html><body><h1>Die git, die\!</h1></body></html>" > index.html
     $ git add .
     $ git commit -a -m "First pages commit"
-    $ git push origin gh-pages
+    $ echo "Bad command: git push origin gh-pages"
+    $ echo "Good command: git push -u origin gh-pages"
 
 While doing up these pages, we find some errors in the original branch 
 and fix them, which we push and commit.
@@ -55,6 +58,8 @@ Oi! What? Why? There's no conflicts, there can't be any conflicts,
 the two branches doesn't even have one single file in common. Why didn't it 
 want to push? But, eh, OK, I'll pull.
 
+    $ echo "It's telling you what to do - git checkout master; git pull; git checkout gh-pages; git push"
+
     $ git pull
 
     You asked me to pull without telling me which branch you
@@ -64,6 +69,9 @@ want to push? But, eh, OK, I'll pull.
     try again (e.g. 'git pull <repository> <refspec>').
 
 What!? Doesn't it know I'm on the gh-pages branch?
+
+    $ echo "No, it doesn't know gh-pages and origin/gh-pages are related.  It would have if you'd used the -u flag to git push when you first pushed the branch."
+    $ echo "Everything you do from here makes problems. Which, if you read the messages it emits you would know."
 
     $ git checkout gh-pages
     Already on 'gh-pages'
