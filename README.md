@@ -113,7 +113,7 @@ a revision control system, surely they don't mean I can actually lose history?
     Writing objects: 100% (6/6), 626 bytes, done.
     Total 6 (delta 0), reused 6 (delta 0)
 
-OOPS! Everything you did on the master branch since you made the hg-pages branch now dissapeared!
+OOPS! Everything you did on the master branch since you made the gh-pages branch now dissapeared!
 Gone! *Poof*!
 
 You can get it back by going over to the other clone and pushing it again, because it
