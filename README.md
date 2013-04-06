@@ -1,3 +1,5 @@
+*Please note that github is not a bloody discussion forum.  'K?*
+
 die-git-die
 ===========
 
